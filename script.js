@@ -43,6 +43,7 @@ const answer = document.querySelectorAll('.optionButton');
 const nextButton = document.querySelector('.nextButton');
 const scoreDisplay = document.querySelector('.score');
 scoreDisplay.innerHTML = `Score: ${score}/${total}`;
+const reset = document.querySelector('.reset');
 
 const hide = (toHide) => toHide.setAttribute('hidden', '');
 const show = (toShow) => toShow.removeAttribute('hidden', '');
@@ -51,6 +52,7 @@ const enable = (toEnable) => toEnable.removeAttribute('disabled','');
 
 hide(explanations);
 disable(nextButton);
+hide(reset);
 
 // Add event listeners to each answer button
 for (let eachOption of answer) {
@@ -71,6 +73,7 @@ for (let eachOption of answer) {
         show(explanations); // Show the explanation
         if (n == facts.length-1) {
         disable(nextButton); // If we reach the last question, hide the next button a
+        show(reset); // Show the reset button
         }
         else{
             enable(nextButton);
@@ -99,6 +102,9 @@ nextButton.addEventListener('click', () => {
     hide(explanations);
     nextQuestion();
 })
+reset.addEventListener('click', () => {
+    location.reload(); 
+});
 
 
 
